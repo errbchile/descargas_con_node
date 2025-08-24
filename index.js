@@ -1,8 +1,13 @@
 import fs from "fs";
 import { exec } from "child_process";
 
-const url =
-  process.env.YOUTUBE_URL || "https://www.youtube.com/watch?v=2iVf6CtcasQ";
+const url = process.env.YOUTUBE_URL;
+
+if (!url) {
+  console.error("❌ No se ha proporcionado una URL de YouTube. Configura la variable de entorno YOUTUBE_URL.");
+  process.exit(1);
+}
+
 const outputDir = "downloads";
 const output = `${outputDir}/video.mp4`;
 

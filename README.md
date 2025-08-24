@@ -1,53 +1,71 @@
-# YouTube Downloader
+# Descargador de Videos de YouTube
 
-This project is a Dockerized Node.js application for downloading YouTube videos using `yt-dlp`. It supports multiple video formats, including `.mp4` and `.avi`, and saves the downloaded files to a local directory.
+Este proyecto es una aplicación Dockerizada en Node.js para descargar videos de YouTube utilizando `yt-dlp`. A continuación, se explica cómo instalar, configurar y ejecutar el proyecto desde cero.
 
-## Features
-- Download YouTube videos in various formats.
-- Supports `.mp4` and `.avi` formats.
-- Dockerized for consistent execution across environments.
-- Local storage of downloaded videos.
+## Requisitos Previos
 
-## Prerequisites
-- Docker
-- Docker Compose
+1. **Instalar Docker Desktop**:
+   - Descarga Docker Desktop desde su [página oficial](https://www.docker.com/products/docker-desktop/).
+   - Sigue las instrucciones de instalación para tu sistema operativo (Windows, macOS o Linux).
+   - Una vez instalado, abre Docker Desktop y asegúrate de que esté corriendo.
 
-## Setup
+2. **Instalar Git**:
+   - Descarga Git desde su [página oficial](https://git-scm.com/).
+   - Sigue las instrucciones de instalación para tu sistema operativo.
+   - Verifica la instalación ejecutando el siguiente comando en tu terminal:
+     ```bash
+     git --version
+     ```
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd youtube-downloader
+## Pasos para Configurar el Proyecto
+
+1. **Clonar el Repositorio**:
+   - Abre una terminal y ejecuta el siguiente comando:
+     ```bash
+     git clone <url-del-repositorio>
+     cd youtube-downloader
+     ```
+
+2. **Construir y Levantar el Contenedor**:
+   - En la misma terminal, ejecuta el siguiente comando para construir y levantar el contenedor:
+     ```bash
+     docker-compose up --build
+     ```
+   - Este comando descargará las dependencias necesarias y configurará el entorno.
+
+3. **Verificar la Configuración**:
+   - Asegúrate de que el contenedor esté corriendo correctamente. Deberías ver logs en la terminal indicando que la aplicación está lista.
+
+## Cómo Usar la Aplicación
+
+1. **Configurar la URL del Video**:
+   - Abre el archivo `docker-compose.yml`.
+   - Busca la sección `environment` y edita el valor de `YOUTUBE_URL` para especificar la URL del video de YouTube que deseas descargar.
+
+   ```yaml
+   environment:
+     - YOUTUBE_URL=https://www.youtube.com/watch?v=tu_video
    ```
 
-2. Build and start the Docker container:
-   ```bash
-   docker-compose up --build
-   ```
+2. **Ejecutar la Aplicación**:
+   - En la terminal, ejecuta el siguiente comando:
+     ```bash
+     docker-compose up
+     ```
+   - El video descargado se guardará en la carpeta `downloads` dentro del proyecto.
 
-3. Access the `downloads` directory to find your downloaded videos.
+3. **Acceder al Video Descargado**:
+   - Navega a la carpeta `downloads` en tu máquina local para encontrar el video descargado.
 
-## Usage
+## Solución de Problemas
 
-1. Edit the `index.js` file to specify the YouTube video URL and desired format.
+- **Docker no está corriendo**:
+  - Asegúrate de que Docker Desktop esté abierto y funcionando.
+- **Error al construir el contenedor**:
+  - Verifica que tienes conexión a internet y que Docker está correctamente instalado.
+- **El video no se descarga**:
+  - Revisa los logs en la terminal para identificar posibles errores.
 
-2. Run the application:
-   ```bash
-   docker-compose up
-   ```
+## Notas Finales
 
-3. The downloaded video will be saved in the `downloads` directory.
-
-## File Structure
-- `index.js`: Main script for downloading videos.
-- `Dockerfile`: Configures the Docker container with necessary dependencies.
-- `docker-compose.yml`: Manages container configuration and volume mapping.
-- `downloads/`: Directory where downloaded videos are saved.
-
-## Troubleshooting
-- Ensure Docker and Docker Compose are installed and running.
-- Verify the `downloads` directory is correctly mapped in `docker-compose.yml`.
-- Check the logs for any errors during the download process.
-
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
+Este proyecto está diseñado para ser fácil de usar, incluso para principiantes. Si tienes alguna duda, no dudes en buscar ayuda en la comunidad de Docker o Node.js.
