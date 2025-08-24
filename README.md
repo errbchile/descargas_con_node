@@ -23,7 +23,7 @@ Este proyecto es una aplicación Dockerizada en Node.js para descargar videos de
    - Abre una terminal y ejecuta el siguiente comando:
      ```bash
      git clone https://github.com/errbchile/descargas_con_node.git
-     cd youtube-downloader
+     cd descargas_con_node
      ```
 
 2. **Construir y Levantar el Contenedor**:
